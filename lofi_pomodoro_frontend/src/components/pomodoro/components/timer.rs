@@ -233,20 +233,20 @@ pub fn timer(props: &Props) -> Html {
             "pomodoro fadeIn"
         }}>
             <div>
-                <Button name="subtract_time_btn" value="-" onclick={decr_minutes} disabled={*timer_running || *timer_paused} is_img={false} img_link={""} img_class={""}/>
+                <Button name="subtract_time_btn" value="-" onclick={decr_minutes} disabled={*timer_running || *timer_paused} is_img=false img_link="" img_class=""/>
                 <span class="clock_txt">
                 if !*timer_running && !*timer_paused {
                     <TextBoxInput as_input={*as_input_minute} value={ if *minute < 10{
                         format!("0{}", (*minute).to_string())
                     } else {
                         (*minute).to_string()
-                    } } class_name={"minute_txt"} on_key_press={change_minute} on_blur={handle_blur_minute} on_click={handle_click_minute} on_input={resize_input.clone()}/>
+                    } } class_name="minute_txt" on_key_press={change_minute} on_blur={handle_blur_minute} on_click={handle_click_minute} on_input={resize_input.clone()}/>
                     {":"}
                     <TextBoxInput as_input={*as_input_second} value={ if *second < 10{
                         format!("0{}", (*second).to_string())
                     } else {
                         (*second).to_string()
-                    } } class_name={"second_txt"} on_key_press={change_second} on_blur={handle_blur_second} on_click={handle_click_second} on_input={resize_input}/>
+                    } } class_name="second_txt" on_key_press={change_second} on_blur={handle_blur_second} on_click={handle_click_second} on_input={resize_input}/>
                 } else if *timer_paused || *timer_running {
                     {
                         format!("{}:{}", if (*time / 60) < 10 {
@@ -263,18 +263,18 @@ pub fn timer(props: &Props) -> Html {
                     }
                 }
                 </span>
-                <Button name="add_time_btn" value="+" onclick={incr_minutes} disabled={*timer_running || *timer_paused} is_img={false} img_link={""} img_class={""}/>
+                <Button name="add_time_btn" value="+" onclick={incr_minutes} disabled={*timer_running || *timer_paused} is_img={false} img_link="" img_class=""/>
             </div>
             <div>
-                <Button name={"start_clock_btn"} value={
+                <Button name="start_timer_btn" value={
                     if *timer_paused || *timer_running {
                         "Resume"
                     } else  {
                         "Start"
                     }
                 } onclick={start_timer} disabled={*timer_running} is_img={false} img_link={""} img_class={""}/>
-                <Button name={"pause_clock_btn"} value="Pause" onclick={pause_timer} disabled={!*timer_running} is_img={false} img_link={""} img_class={""}/>
-                <Button name={"stop_clock_btn"} value="Stop" onclick={stop_timer} disabled={*timer_running || !*timer_paused} is_img={false} img_link={""} img_class={""}/>
+                <Button name="pause_timer_btn" value="Pause" onclick={pause_timer} disabled={!*timer_running} is_img=false img_link="" img_class=""/>
+                <Button name="stop_timer_btn" value="Stop" onclick={stop_timer} disabled={*timer_running || !*timer_paused} is_img=false img_link="" img_class=""/>
             </div>
         </div>
     }

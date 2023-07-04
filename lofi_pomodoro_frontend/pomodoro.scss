@@ -30,6 +30,17 @@
     }
 }
 
+@keyframes crtAnimation {
+    0% {
+      transform: scaleY(0) scaleX(0);
+      filter: brightness(15) blur(0px);
+    }
+    20% {
+      transform: scaleY(0.02) scaleX(0.8);
+      filter: brightness(15) blur(0px);
+    }
+  }
+
 :root {
     --green-glow: 0px 0px 2px hsl(120, 100%, 80%),
         0px 0px 15px green,
@@ -50,6 +61,7 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
+    background-color: black;
 }
 
 img {
@@ -78,6 +90,7 @@ button {
     backface-visibility: hidden;
     background: none;
     border: 0;
+    padding: 0;
     cursor: pointer;
 }
 
@@ -90,6 +103,14 @@ button:disabled {
 span {
     text-shadow: var(--green-glow);
     backface-visibility: hidden;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    cursor: pointer;
+    color: #FFFFFF;
 }
 
 .darken {
@@ -143,6 +164,8 @@ span {
     flex-direction: column;
     padding: 30px;
     overflow: hidden;
+    animation: crtAnimation 1.2s 0.2s both;
+    animation-timing-function: cubic-bezier(0.2, -0.1, 0, 1);
 }
 
 .background_gif {
@@ -188,7 +211,7 @@ span {
     cursor: pointer;
 }
 
-.timer_img {
+.icon {
     width: 20px;
     height: 20px;
     flex: 0 0 20px;
@@ -205,7 +228,7 @@ span {
 .horizontal {
     z-index: 2;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .shadow {
@@ -238,4 +261,31 @@ span {
     border-radius: 8px;
     width: 100vw;
     height: 200vw;
+}
+
+.left {
+    margin-right: 14px;
+}
+
+.add_time_btn {
+    margin-left: 5px;
+}
+
+.subtract_time_btn {
+    margin-right: 5px;
+}
+
+.start_timer_btn {
+    margin-right: 5px;
+}
+
+.stop_timer_btn {
+    margin-left: 5px;
+}
+
+.bottom_ui {
+    z-index: 6;
+    font-family: "VT323", sans-serif;
+    font-size: 21px;
+    color: rgb(255, 255, 255);
 }

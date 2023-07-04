@@ -14,6 +14,6 @@ serde = "1.0.163"
 serde-wasm-bindgen = "0.5.0"
 wasm-bindgen = "0.2.85"
 wasm-bindgen-futures = "0.4.35"
-web-sys = { version = "0.3.64", features = ["HtmlInputElement", "Document", "CssStyleDeclaration", "Node", "NodeList", "HtmlIFrameElement"] }
+web-sys = { version = "0.3.64", features = ["HtmlInputElement", "Document", "CssStyleDeclaration", "Node", "NodeList", "HtmlIFrameElement", "Element", "HtmlCollection"] }
 yew = {version="0.20.0", features=["csr"]}
 yew-hooks = "0.2.0"

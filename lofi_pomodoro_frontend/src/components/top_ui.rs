@@ -1,7 +1,7 @@
 use web_sys::MouseEvent;
 use yew::{function_component, Html, html, Callback, use_state};
 use yew_hooks::use_timeout;
-use crate::components::{pomodoro::components::timer::Timer, button::Button, clock::Clock};
+use crate::components::{pomodoro::components::timer::Timer, button::Button, clock::Clock, link::Link};
 
 #[function_component(TopUI)]
 pub fn top_ui() -> Html{
@@ -36,7 +36,8 @@ pub fn top_ui() -> Html{
             <Clock/>
             <div class="vertical">
                 <div class="horizontal">
-                    <Button name={"timer_btn"} value={""} onclick={timer_on_click} disabled={false} is_img={true} img_link={"static/svg/timer.svg"} img_class={"timer_img shadow"}/>
+                    <Link name="linkedin_link left" img_src="static/svg/linkedin.svg" link_url="https://www.linkedin.com/in/bao-nguyen-172029261" img_class="icon shadow"/>
+                    <Button name="timer_btn" value="" onclick={timer_on_click} disabled=false is_img=true img_link="static/svg/timer.svg" img_class="icon shadow"/>
                 </div> 
                 if *show_clock {
                     <Timer is_visible={*clock_visible_class}/>

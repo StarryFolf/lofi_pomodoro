@@ -1,6 +1,6 @@
 use serde::Serialize;
 use wasm_bindgen::{JsValue, JsCast, prelude::{Closure, wasm_bindgen}};
-use web_sys::{window, HtmlScriptElement};
+use web_sys::{window, HtmlScriptElement, Event};
 
 pub async fn load_iframe_api_async() -> Result<JsValue, JsValue> {
     let window = window().unwrap();
@@ -18,7 +18,7 @@ pub async fn load_iframe_api_async() -> Result<JsValue, JsValue> {
     script.set_onload(Some(onload_callback.as_ref().unchecked_ref()));
     onload_callback.forget();
 
-    document.head().ok_or("No head tag found")?.append_child(&script)?;
+    document.body().ok_or("No head tag found")?.append_child(&script)?;
 
     receiver.await.unwrap()
 }
@@ -94,29 +94,35 @@ pub struct Options {
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(js_namespace = YT, js_name=Player)]
-    #[derive(PartialEq)]
+    # [wasm_bindgen (extends = :: js_sys :: Object ,js_namespace = YT, js_name = Player , typescript_type = "Player")]
+    #[derive(PartialEq, Clone, Eq)]
     pub type Player;
 
     #[wasm_bindgen(js_namespace = YT, js_class="Player", constructor)]
     pub fn new(target_id: &str, options: JsValue) -> Player;
 
-    #[wasm_bindgen(method, js_name=playVideo)]
-    pub fn play_video(this: &Player);
+    #[wasm_bindgen(catch, method, structural, js_name=playVideo)]
+    pub fn play_video(this: &Player) -> Result<(), JsValue>;
+
+    #[wasm_bindgen(catch, method, structural, js_name=pauseVideo)]
+    pub fn pause_video(this: &Player) -> Result<(), JsValue>;
+
+    #[wasm_bindgen(method, js_name=stopVideo)]
+    pub fn stop_video(this: &Player);
 
     #[wasm_bindgen(method, js_name=cueVideoById)]
     pub fn cue_video_by_id(this: &Player, video_id: JsValue);
 
     #[wasm_bindgen(method, js_name=addEventListener)]
-    pub fn add_event_listener(this: &Player, event: &str, callback: &Closure<dyn FnMut(JsValue)>);
+    pub fn add_event_listener(this: &Player, event: &str, callback: &Closure<dyn FnMut(Event)>);
 
     #[wasm_bindgen(method, js_name=removeEventListener)]
     pub fn remove_event_listener(
         this: &Player,
         event: &str,
-        callback: &Closure<dyn FnMut(JsValue)>,
+        callback: &Closure<dyn FnMut(Event)>,
     );
 
     #[wasm_bindgen(method, js_name=getPlayerState)]
-    fn _get_player_state(this: &Player) -> i32;
+    pub fn get_player_state(this: &Player) -> i32;
 }

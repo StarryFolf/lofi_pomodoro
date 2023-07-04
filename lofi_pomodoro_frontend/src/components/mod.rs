@@ -5,3 +5,5 @@ pub mod top_ui;
 pub mod button;
 pub mod textbox_input;
 pub mod clock;
+pub mod link;
+pub mod bottom_ui;
