@@ -1,5 +1,4 @@
 use futures::FutureExt;
-use gloo_console::log;
 use wasm_bindgen::{prelude::Closure, JsCast};
 use web_sys::{window, KeyboardEvent, Event};
 use yew::{function_component, html, platform::spawn_local, Callback, Html, Properties, use_state};
